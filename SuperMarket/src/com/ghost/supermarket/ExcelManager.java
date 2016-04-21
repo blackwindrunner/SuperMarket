@@ -56,7 +56,7 @@ public class ExcelManager {
 					if ("商品名称".equals(cell.getStringCellValue())) {
 						productNameColumnIndex = cell.getColumnIndex();//获得商品名称所在列的索引号
 					}
-					if ("销售额（供货价）".equals(cell.getStringCellValue())) {
+					if ("销售额(供货价)".equals(cell.getStringCellValue())) {
 						deliveryPriceColumnIndex = cell.getColumnIndex();//获得销售额所在列的索引号
 					}
 					if ("出货数量".equals(cell.getStringCellValue())) {
