@@ -39,8 +39,10 @@ public class ExcelManager {
 	 * 初始化销售结果表
 	 * @throws IOException
 	 */
-	public void initResultIndex() throws IOException {
-		salesExcelBook = new HSSFWorkbook(FileManager.readSalesResults());
+	public void initResultIndex(int i) throws IOException {
+		// TODO Auto-generated method stub
+
+		salesExcelBook = new HSSFWorkbook(FileManager.readSalesResults(i));
 		HSSFSheet firstSheet = salesExcelBook.getSheetAt(0);
 		firstSheet.getRow(1);
 		Iterator<Row> rowIterator = firstSheet.iterator();
@@ -96,13 +98,18 @@ public class ExcelManager {
 		}
 //		System.out.println(projectList.get(144).getProductCode());
 //		salesExcelBook.close();
+	
+	}
+	
+	public void initResultIndex() throws IOException {
+		initResultIndex(0);
 	}
 	/**
 	 * 初始化价格表
 	 * @throws IOException
 	 */
-	public void initChargeExcel() throws IOException {
-		chargeExcelBook = new HSSFWorkbook(FileManager.readChargeExcel());
+	public void initChargeExcel(int i) throws IOException {
+		chargeExcelBook = new HSSFWorkbook(FileManager.readChargeExcel(i));
 		HSSFSheet spreadsheet = chargeExcelBook.getSheet("Sheet1");
 //		HSSFRow row = spreadsheet.getRow(3);
 //		System.out.println(spreadsheet.getRow(3).getCell(2));
@@ -128,8 +135,8 @@ public class ExcelManager {
 //		 chargeExcelBook.close();
 	}
 	
-	public void fillSalesAmout() throws IOException{
-		chargeExcelBook = new HSSFWorkbook(FileManager.readChargeExcel());
+	public void fillSalesAmout(int i) throws IOException{
+		chargeExcelBook = new HSSFWorkbook(FileManager.readChargeExcel(i));
 		HSSFSheet firstSheet =  chargeExcelBook.getSheet("Sheet1");
 		HSSFCellStyle style = chargeExcelBook.createCellStyle();
 		HSSFSheet secondSheet =  chargeExcelBook.getSheet("Sheet2");
@@ -206,7 +213,7 @@ public class ExcelManager {
 		}
 		FileOutputStream out = null;
 		try {
-			out = FileManager.writeChargeExcel();
+			out = FileManager.writeChargeExcel(i);
 			chargeExcelBook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 			chargeExcelBook.write(out);
 		} catch (IOException e) {
@@ -219,4 +226,5 @@ public class ExcelManager {
 			}
 		}
 	}
+	
 }
